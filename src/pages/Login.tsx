@@ -39,7 +39,7 @@ const Login = () => {
         localStorage.setItem("role", data.role);
 
         showToast.success("Login successful!");
-        navigate("/user"); // Redirect to dashboard or home page
+        navigate("/"); // Redirect to dashboard or home page
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           console.error("Login failed:", error.response?.data || error.message);

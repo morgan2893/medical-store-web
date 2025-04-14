@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CommonTable from "../components/CommonTable";
 import axiosInstance from "../services/api/axiosInstance";
+import Pagination from "../components/Pagination";
+import { removeKeysFromArray } from "../services/common/helperFunctions";
+import Loader from "../components/Loader";
 
 interface Customer {
   name: string;
@@ -11,33 +14,15 @@ interface Customer {
 const Customers = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<Customer[]>([]);
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000); // simulate API
-  }, []);
-  const handleEdit = (row: Customer) => {
-    console.log("Edit:", row);
-  };
-
-  const handleDelete = (row: Customer) => {
-    console.log("Delete:", row);
-  };
-
-  function removeKeysFromArray(arr: any, keysToRemove: any) {
-    return arr.map((obj: any) =>
-      Object.fromEntries(
-        Object.entries(obj).filter(([key]) => !keysToRemove.includes(key))
-      )
-    );
-  }
   useEffect(() => {
     (async () => {
       try {
-        const response: any = await axiosInstance.get("/customers");
-
-        console.log(
-          removeKeysFromArray(response.data.data, ["createdBy", "__v", "_id"])
-        ); // Handle the fetched data as needed
+        setLoading(true);
+        const response: any = await axiosInstance.get(
+          `/customers?page=${page}`
+        );
         setData(
           removeKeysFromArray(response.data.data, [
             "createdBy",
@@ -46,24 +31,24 @@ const Customers = () => {
             "createdAt",
           ])
         );
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } catch (error) {
         console.error("Error fetching customers:", error);
       } finally {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [page]);
   return (
     <div style={{ padding: 16 }}>
       <h2>Customers</h2>
-      <CommonTable
-        data={data}
-        searchKeys={["name", "phone"]}
-        loading={loading}
-        pageSize={5}
-        onEdit={(row) => console.log("Edit", row)}
-        onDelete={(row) => console.log("Delete", row)}
+      <CommonTable data={data} />
+      <Pagination
+        currentPage={page}
+        totalPages={5}
+        onPageChange={(page) => setPage(page)}
       />
+      {loading && <Loader visible={loading} message="Fetching your data..." />}
     </div>
   );
 };

@@ -1,0 +1,36 @@
+.paginationWrapper {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .pageButton, .navButton {
+    padding: 6px 12px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .pageButton:hover,
+  .navButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+  }
+  
+  .ellipsis {
+    padding: 6px 8px;
+    color: #999;
+    user-select: none;
+  }
+  
