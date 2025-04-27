@@ -10,6 +10,7 @@ import ToasterProvider from "./components/ToasterProvider";
 import AddMedicine from "./pages/AddMedicine";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import AddStock from "./pages/AddStock";
+import Billing from "./pages/Billing";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/add-medicine" element={<AddMedicine />} />
                 <Route path="/add-stock" element={<AddStock />} />
+                <Route path="/billing" element={<Billing />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </>
             ) : (

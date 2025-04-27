@@ -15,6 +15,7 @@ const Customers = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<Customer[]>([]);
   const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState<any>(null);
 
   useEffect(() => {
     (async () => {
@@ -31,6 +32,7 @@ const Customers = () => {
             "createdAt",
           ])
         );
+        setPagination(response.data.pagination);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } catch (error) {
         console.error("Error fetching customers:", error);
@@ -45,7 +47,7 @@ const Customers = () => {
       <CommonTable data={data} />
       <Pagination
         currentPage={page}
-        totalPages={5}
+        totalPages={pagination?.totalPages}
         onPageChange={(page) => setPage(page)}
       />
       {loading && <Loader visible={loading} message="Fetching your data..." />}

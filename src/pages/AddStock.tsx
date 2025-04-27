@@ -34,20 +34,13 @@ const AddStock: React.FC = () => {
 
   const validationSchema = Yup.object({
     name: Yup.string().trim().required("Required"),
-    description: Yup.string().trim(),
-    category: Yup.string()
-      .oneOf([
-        "tablet",
-        "syrup",
-        "capsule",
-        "drop",
-        "ointment",
-        "equipment",
-        "personal_care",
-        "other",
-      ])
-      .required("Required"),
-    manufacturer: Yup.string().trim(),
+    batchNo: Yup.string().trim().required("Required"),
+    expiryDate: Yup.string().trim().required("Required"),
+    distributor: Yup.string().trim().required("Required"),
+    price: Yup.string().trim().required("Required"),
+    quantity: Yup.string().trim().required("Required"),
+    pricePerUnit: Yup.string().trim().required("Required"),
+    products: Yup.string().trim().required("Required"),
   });
 
   const onSubmit = async (
@@ -74,7 +67,7 @@ const AddStock: React.FC = () => {
 
   const formik = useFormik<MedicineFormValues>({
     initialValues,
-    // validationSchema,
+    validationSchema,
     onSubmit,
   });
 

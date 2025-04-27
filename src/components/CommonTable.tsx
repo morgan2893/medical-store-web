@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import styles from "../styles/commonTable.module.css";
 import { CommonTableProps } from "../utils/types";
 
@@ -6,8 +6,6 @@ function CommonTable<T extends Record<string, any>>({
   data,
   loading = false,
 }: Omit<CommonTableProps<T>, "columns">) {
-  const [search, setSearch] = useState("");
-
   // Dynamically generate columns from first item in data
   const columns = useMemo(() => {
     if (data.length === 0) return [];
@@ -22,16 +20,6 @@ function CommonTable<T extends Record<string, any>>({
 
   return (
     <div className={styles.wrapper}>
-      <input
-        type="text"
-        className={styles.search}
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
-
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead>

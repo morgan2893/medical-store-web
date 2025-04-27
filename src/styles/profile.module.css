@@ -1,0 +1,52 @@
+.container {
+    padding: 16px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+  }
+  
+  .subheading {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 16px;
+  }
+  
+  .optionList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .optionItem {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .optionItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .icon {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  
+  .label {
+    font-size: 16px;
+    color: #333;
+  }
+  
